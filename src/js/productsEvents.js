@@ -22,4 +22,6 @@ for (const product of database) {
 //load products from json
 console.log(database);
 
-const createProductElement = (product) => {};
+const createProductElement = (product) => {
+  const divProductContainer = document.createElement("div");
+};

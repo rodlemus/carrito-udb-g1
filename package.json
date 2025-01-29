@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.0.0",
+    "carrito-vanilla": "file:",
     "tailwindcss": "^4.0.0"
   }
 }

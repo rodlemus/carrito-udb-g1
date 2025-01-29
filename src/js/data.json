@@ -1,16 +1,18 @@
 {
-    "database":[
-        {
-            "id":"abc123",
-            "name":"Gigabyte NVIDIA GeForce RTX 3060 Graphic Card - 12 GB GDDR6 GV-N3060GAMING OC-12GD REV2.0",
-            "url":"https://aeon.com.sv/web/image/product.product/95703/image_1024",
-            "price":389.00
-        },
-        {
-            "id":"def123",
-            "name":"Tarjeta de Video PNY NVIDIA GeForce RTX 4060 Graphic Card - 8 GB GDDR6 VCG40608DFXPB1",
-            "url":"https://aeon.com.sv/web/image/product.product/95704/image_1024",
-            "price":180.00
-        }
-    ]
+  "database": [
+    {
+      "id": "abc123",
+      "name": "Gigabyte NVIDIA GeForce RTX 3060 Graphic Card - 12 GB GDDR6 GV-N3060GAMING OC-12GD REV2.0",
+      "url": "https://aeon.com.sv/web/image/product.product/95703/image_1024",
+      "description": "Gigabyte NVIDIA GeForce RTX 3060 Graphic Card - 12 GB GDDR6 GV-N3060GAMING OC-12GD REV2.0",
+      "price": 389.0
+    },
+    {
+      "id": "def123",
+      "name": "Tarjeta de Video PNY NVIDIA GeForce RTX 4060 Graphic Card - 8 GB GDDR6 VCG40608DFXPB1",
+      "url": "https://aeon.com.sv/web/image/product.product/95704/image_1024",
+      "description": "Tarjeta de Video PNY NVIDIA GeForce RTX 4060 Graphic Card - 8 GB GDDR6 VCG40608DFXPB1",
+      "price": 180.0
+    }
+  ]
 }

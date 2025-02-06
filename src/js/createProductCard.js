@@ -2,6 +2,13 @@ export const createProductCard = (product) => {
   const divProductContainer = document.createElement("div");
   divProductContainer.classList.add("product");
   divProductContainer.className = "flex flex-col border rounded-sm w-fit p-4";
+
+  // a cualquir etiqueta html se le puede agregar un atributo personalizado
+  // en este caso le agregamos un atributo product-id con el id del producto
+
+  // <div product-id="abc" class="product flex flex-col border rounded-sm w-fit p-4">
+  // esto puede ser util cuando se quiera obtener el id del producto
+  // para hacer una peticion a la base de datos o para eliminar el producto del carrito
   divProductContainer.setAttribute("product-id", product.id);
 
   const productImg = document.createElement("img");
@@ -49,7 +56,8 @@ export const createProductCard = (product) => {
 // estructura que se genera con la funcion createProductCard
 
 //<div
-// product-id="abc"
+// product-id="abc" // atributo personalizado <--------------------------
+
 // class="product flex flex-col border rounded-sm w-fit p-4"
 // >
 // <span>Teclado mecanico cherry rgb</span>

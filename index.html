@@ -11,7 +11,7 @@
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=shopping_cart"
     />
   </head>
-  <body class="relative min-h-screen">
+  <body class="w-full h-full">
     <div class="h-20 bg-black flex items-center px-6 justify-between">
       <div><span class="text-white font-bold text-xl">Tech UDB</span></div>
 
@@ -25,15 +25,20 @@
 
     <div>
       <div>buscador</div>
-      <!-- contenedor donde se renderizan -->
+      <div>slider</div>
+
+      <!-- contenedor donde se renderizaran los productos -->
       <div
         id="productsContainer"
         class="grid grid-col-1s md:grid-cols-3 justify-center gap-4 px-4"
       ></div>
+      <!-- fin del contenedor de los productos -->
     </div>
+
+    <!--  SIDEBAR DEL CARRITO -->
     <div
       id="sidebarShoppingCart"
-      class="flex flex-col h-screen absolute top-0 right-0 w-full md:w-[40%] bg-green-100/90 pb-8 transform translate-x-full transition-transform duration-300"
+      class="flex flex-col h-full fixed z-30 top-0 right-0 w-full md:w-[40%] bg-green-100/90 pb-8 transform translate-x-full transition-transform duration-300"
     >
       <div
         class="flex justify-between items-center bg-white p-4 rounded-b-sm shadow-md"
@@ -54,6 +59,7 @@
           </svg>
           <span class="font-semibold text-xl">Tu carrito</span>
         </div>
+
         <div>
           <button
             class="cursor-pointer bg-red-600 text-white font-semibold rounded-sm py-2 px-1.5"
@@ -68,15 +74,18 @@
           </button>
         </div>
       </div>
+      <!-- fin del header del carrito -->
 
+      <!-- body del carrito donde se mostrararon los articulos -->
       <div class="flex-1 overflow-auto p-4">
-        <!-- body del carrito donde se mostrararon los articulos -->
         <div>
           <div>
             <span>item 1</span>
           </div>
         </div>
       </div>
+      <!-- fin del body del carrito -->
+
       <!-- Footer del carrito aqui se motrara el total y el boton para pagar -->
       <div class="px-4">
         <div>
@@ -90,6 +99,8 @@
         <button type="button">PAGAR</button>
       </div>
     </div>
+    <!-- FIN DE SIDEBAR DEL CARRITO -->
+
     <script type="module" src="/src/main.js"></script>
     <script type="module" src="/src/js/productsEvents.js"></script>
     <script type="module" src="/src/js/sidebarShoppingCart.js"></script>

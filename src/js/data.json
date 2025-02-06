@@ -1,18 +1,39 @@
 {
   "database": [
     {
-      "id": "abc123",
-      "name": "Gigabyte NVIDIA GeForce RTX 3060 Graphic Card - 12 GB GDDR6 GV-N3060GAMING OC-12GD REV2.0",
-      "url": "https://aeon.com.sv/web/image/product.product/95703/image_1024",
-      "description": "Gigabyte NVIDIA GeForce RTX 3060 Graphic Card - 12 GB GDDR6 GV-N3060GAMING OC-12GD REV2.0",
-      "price": 389.0
+      "id": "16589",
+      "name": "ZOTAC GAMING GeForce RTX 4070 Ti SUPER AMP HOLO 16GB GDDR6X",
+      "url": "https://aeon.com.sv/web/image/product.product/95534/image_1024",
+      "description": "ZOTAC GAMING GeForce RTX 4070 Ti SUPER AMP HOLO 16GB GDDR6X ZT-D40730F-10P",
+      "price": null
     },
     {
-      "id": "def123",
-      "name": "Tarjeta de Video PNY NVIDIA GeForce RTX 4060 Graphic Card - 8 GB GDDR6 VCG40608DFXPB1",
-      "url": "https://aeon.com.sv/web/image/product.product/95704/image_1024",
-      "description": "Tarjeta de Video PNY NVIDIA GeForce RTX 4060 Graphic Card - 8 GB GDDR6 VCG40608DFXPB1",
-      "price": 180.0
+      "id": "16804",
+      "name": "Tarjeta de Video Sapphire Nitro AMD Radeon RX 6900XT OC 16GB GDDR6",
+      "url": "https://aeon.com.sv/web/image/product.product/94635/image_1024",
+      "description": "Tarjeta de Video Sapphire Nitro AMD Radeon RX 6900XT OC 16GB GDDR6 S88-3E438-401SA",
+      "price": null
+    },
+    {
+      "id": "13860",
+      "name": "Tarjeta de Video MSI VGA NVIDIA RTX 4060 Ti VENTUS 2X 16G",
+      "url": "https://aeon.com.sv/web/image/product.product/94583/image_1024",
+      "description": "Tarjeta de Video MSI VGA NVIDIA RTX 4060 Ti VENTUS 2X 16G 824142332061",
+      "price": null
+    },
+    {
+      "id": "16318",
+      "name": "Tarjeta de Video PULSE AMD Radeon RX 6600 8GB GDDR6",
+      "url": "https://aeon.com.sv/web/image/product.product/94610/image_1024",
+      "description": "TARJETA DE VIDEO PULSE AMD Radeon RX 6600 8GB GDDR6 PCI-Express 4.0 x8 1x HDMI 3x DisplayPort",
+      "price": null
+    },
+    {
+      "id": "16318_2",
+      "name": "Tarjeta de Video PULSE AMD Radeon RX 6600 8GB GDDR6",
+      "url": "https://aeon.com.sv/web/image/product.product/94610/image_1024",
+      "description": "TARJETA DE VIDEO PULSE AMD Radeon RX 6600 8GB GDDR6 PCI-Express 4.0 x8 1x HDMI 3x DisplayPort",
+      "price": null
     }
   ]
 }

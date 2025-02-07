@@ -24,7 +24,7 @@ export const createProductCard = (product) => {
   productDescription.textContent = product.description;
 
   const productPrice = document.createElement("span");
-  productPrice.className = "font-semibold text-red-700 text-xl";
+  productPrice.className = "font-semibold text-red-700 text-xl text-center";
   productPrice.textContent = `$${product.price}`;
 
   const addProductToShoppingCartButton = document.createElement("button");

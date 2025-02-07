@@ -13,19 +13,45 @@
   </head>
   <body class="w-full h-full">
     <div class="h-20 bg-black flex items-center px-6 justify-between">
-      <div><span class="text-white font-bold text-xl">Tech UDB</span></div>
+      <div class="basis-64"><span class="text-white font-bold text-xl">Tech UDB</span></div>
 
-      <button class="flex cursor-pointer" id="shoppingCartNavBarBtn">
-        <img src="/public/cart.png" alt="cart" width="26" height="26" />
-        <div class="flex items-center bg-red-700 rounded-full px-2">
-          <span class="text-white font-bold text-center text-xs">10</span>
+      <!-- Aqui agregamos la barra de busqueda -->
+      <div class="relative basis-128">
+        <input type="text" placeholder="Buscador..." class="w-full text-white text-[1.3vw] py-[10px] px-[20px] rounded-xl border-solid border-white border-[.5px]">
+        <div class="absolute top-[50%] right-[8px] transform-[translateY(-50%)]">
+          <svg xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="30px" fill="#fff">
+            <path d="M765-144 526-383q-30 22-65.79 34.5-35.79 12.5-76.18 12.5Q284-336 214-406t-70-170q0-100 70-170t170-70q100 0 170 70t70 170.03q0 40.39-12.5 76.18Q599-464 577-434l239 239-51 51ZM384-408q70 0 119-49t49-119q0-70-49-119t-119-49q-70 0-119 49t-49 119q0 70 49 119t119 49Z"/>
+          </svg>
         </div>
-      </button>
+      </div>
+
+      <div class="basis-64 flex justify-end">
+        <button class="flex cursor-pointer" id="shoppingCartNavBarBtn">
+          <img src="/public/cart.png" alt="cart" width="26" height="26" />
+          <div class="flex items-center bg-red-700 rounded-full px-2">
+            <span class="text-white font-bold text-center text-xs">10</span>
+          </div>
+        </button>
+      </div>
     </div>
 
     <div>
-      <div>buscador</div>
-      <div>slider</div>
+
+      <!-- Slider dinámico -->
+      <div class="p-[1rem]">
+        <div class="relative max-w-full my-0 mx-auto">
+          <div class="flex aspect-[16/2.5] overflow-x-hidden snap-mandatory scroll-smooth shadow-lg rounded-lg slider">
+              <img id="slide-1" src="https://images.unsplash.com/photo-1587302912306-cf1ed9c33146?q=80&w=1580&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="unsplash-image-office-pc-set" class="grow shrink-0 basis-full object-cover snap-start">
+              <img id="slide-2" src="https://images.unsplash.com/photo-1640955014216-75201056c829?q=80&w=1632&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="unsplash-image-pc-component" class="grow shrink-0 basis-full object-cover snap-start">
+              <img id="slide-3" src="https://images.unsplash.com/photo-1669480380782-b055a193d066?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="unsplash-image-pc-graphic-card-and-more-components" class="grow shrink-0 basis-full object-cover snap-start">
+          </div>
+          <div class="absolute bottom-5 left-1/2 transform -translate-x-1/2 z-10 flex gap-4">
+              <a href="#slide-1" class="w-2.5 h-2.5 rounded-full bg-white opacity-75 hover:opacity-100 transition-opacity ease-in-out duration-250ms"></a>
+              <a href="#slide-2" class="w-2.5 h-2.5 rounded-full bg-white opacity-75 hover:opacity-100 transition-opacity ease-in-out duration-250ms"></a>
+              <a href="#slide-3" class="w-2.5 h-2.5 rounded-full bg-white opacity-75 hover:opacity-100 transition-opacity ease-in-out duration-250ms"></a>
+          </div>
+        </div>
+      </div>
 
       <!-- contenedor donde se renderizaran los productos -->
       <div
@@ -104,5 +130,6 @@
     <script type="module" src="/src/main.js"></script>
     <script type="module" src="/src/js/productsEvents.js"></script>
     <script type="module" src="/src/js/sidebarShoppingCart.js"></script>
+    <script type="text/javascript" src="/src/js/slider.js"></script>
   </body>
 </html>

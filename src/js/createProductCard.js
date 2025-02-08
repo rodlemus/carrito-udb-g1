@@ -3,6 +3,7 @@ export const createProductCard = (product) => {
   divProductContainer.classList.add("product");
   divProductContainer.className = "flex flex-col shadow-lg rounded-md w-full p-4 hover:shadow-xl";
 
+
   // a cualquir etiqueta html se le puede agregar un atributo personalizado
   // en este caso le agregamos un atributo product-id con el id del producto
 
@@ -13,7 +14,7 @@ export const createProductCard = (product) => {
 
   // Contenedor para la imagen, nombre y descripción
   const cardContentMaxGrow = document.createElement("div");
-  cardContentMaxGrow.className = "flex flex-col items-center justify-center";
+  cardContentMaxGrow.className = "flex flex-col items-center justify-center flex-grow";
 
   const productImg = document.createElement("img");
   productImg.className = "h-48 object-cover";
@@ -33,7 +34,7 @@ export const createProductCard = (product) => {
 
   // Contenedor para la cantidad con botones de + y -
   const quantityContainer = document.createElement("div");
-  quantityContainer.className = "flex items-center justify-between rounded-sm px-2 py-3 bg-gray-200 md:w-5/12 sm:w-3/12";
+  quantityContainer.className = "flex items-center justify-between rounded-sm px-2 py-3 bg-gray-200 md:w-5/12 sm:w-4/12 lg:w-6/12";
 
   const decreaseButton = document.createElement("button");
   decreaseButton.className = "p-1 hover:cursor-pointer";
@@ -98,6 +99,9 @@ export const createProductCard = (product) => {
 
   return divProductContainer;
 };
+
+/* la variable quantityValue guarda el valor actual de la cantidad del producto,
+ para obtener el valor es con quantityValue.textContent */
 
 // estructura que se genera con la funcion createProductCard
 

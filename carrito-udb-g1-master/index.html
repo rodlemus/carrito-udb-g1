@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tech UDB</title>
+    <link rel="stylesheet" href="src/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=shopping_cart"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+  </head>
+  <body class="w-full h-full">
+    <div class="h-20 bg-black flex items-center px-6 justify-between">
+      <div class="basis-64"><span class="text-white font-bold text-xl">Tech UDB</span></div>
+
+      <!-- Aqui agregamos la barra de busqueda -->
+      <div class="relative basis-128">
+        <input type="text" placeholder="Buscador..." class="w-full text-white text-[1.3vw] py-[10px] px-[20px] rounded-xl border-solid border-white border-[.5px]">
+        <div class="absolute top-[50%] right-[8px] transform-[translateY(-50%)]">
+          <svg xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="30px" fill="#fff">
+            <path d="M765-144 526-383q-30 22-65.79 34.5-35.79 12.5-76.18 12.5Q284-336 214-406t-70-170q0-100 70-170t170-70q100 0 170 70t70 170.03q0 40.39-12.5 76.18Q599-464 577-434l239 239-51 51ZM384-408q70 0 119-49t49-119q0-70-49-119t-119-49q-70 0-119 49t-49 119q0 70 49 119t119 49Z"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="basis-64 flex justify-end">
+        <button class="flex cursor-pointer" id="shoppingCartNavBarBtn">
+          <img src="/public/cart.png" alt="cart" width="26" height="26" />
+          <div class="flex items-center bg-red-700 rounded-full px-2">
+            <span class="text-white font-bold text-center text-xs">10</span>
+          </div>
+        </button>
+      </div>
+    </div>
+
+    <div>
+
+      <!-- Slider dinámico -->
+      <div class="p-[1rem]">
+        <div class="relative max-w-full my-0 mx-auto">
+          <div class="flex aspect-[16/2.5] overflow-x-hidden snap-mandatory scroll-smooth shadow-lg rounded-lg slider">
+              <img id="slide-1" src="https://images.unsplash.com/photo-1587302912306-cf1ed9c33146?q=80&w=1580&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="unsplash-image-office-pc-set" class="grow shrink-0 basis-full object-cover snap-start">
+              <img id="slide-2" src="https://images.unsplash.com/photo-1640955014216-75201056c829?q=80&w=1632&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="unsplash-image-pc-component" class="grow shrink-0 basis-full object-cover snap-start">
+              <img id="slide-3" src="https://images.unsplash.com/photo-1669480380782-b055a193d066?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="unsplash-image-pc-graphic-card-and-more-components" class="grow shrink-0 basis-full object-cover snap-start">
+          </div>
+          <div class="absolute bottom-5 left-1/2 transform -translate-x-1/2 z-10 flex gap-4">
+              <a href="#slide-1" class="w-2.5 h-2.5 rounded-full bg-white opacity-75 hover:opacity-100 transition-opacity ease-in-out duration-250ms"></a>
+              <a href="#slide-2" class="w-2.5 h-2.5 rounded-full bg-white opacity-75 hover:opacity-100 transition-opacity ease-in-out duration-250ms"></a>
+              <a href="#slide-3" class="w-2.5 h-2.5 rounded-full bg-white opacity-75 hover:opacity-100 transition-opacity ease-in-out duration-250ms"></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- contenedor donde se renderizaran los productos -->
+      <div
+        id="productsContainer"
+        class="grid grid-col-1s justify-center gap-4 px-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+      ></div>
+      <!-- fin del contenedor de los productos -->
+    </div>
+    <!-- SIDEBAR DEL CARRITO -->
+<div
+  id="sidebarShoppingCart"
+  class="flex flex-col h-full fixed z-30 top-0 right-0 w-full md:w-[40%] bg-green-100/90 pb-8 transform translate-x-full transition-transform duration-300"
+>
+  <!-- HEADER DEL CARRITO -->
+  <div class="flex justify-between items-center bg-white p-4 rounded-b-sm shadow-md">
+    <div class="flex items-center space-x-2">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="20"
+        height="20"
+        fill="#ff0000"
+        class="bi bi-cart text-red-700"
+        viewBox="0 0 16 16"
+      >
+        <path
+          d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"
+        />
+      </svg>
+      <span class="font-semibold text-xl">Tu carrito</span>
+    </div>
+
+    <div>
+      <button class="cursor-pointer bg-red-600 text-white font-semibold rounded-sm py-2 px-1.5" id="clearCart">
+        Borrar todo
+      </button>
+      <button
+        class="cursor-pointer border-2 border-black font-semibold rounded-sm py-2 px-1.5"
+        id="shoppingCartCloseBtn"
+      >
+        Cerrar
+      </button>
+    </div>
+  </div>
+  <!-- FIN DEL HEADER DEL CARRITO -->
+
+  <!-- BODY DEL CARRITO DONDE SE MOSTRARÁN LOS ARTÍCULOS -->
+  <div class="flex-1 overflow-auto p-4" id="cartItemsContainer">
+    <div>
+      <span>Item 1</span>
+      <span id="cartTotal">$0.00</span>
+    </div>
+  </div>
+  <!-- FIN DEL BODY DEL CARRITO -->
+
+  <!-- FOOTER DEL CARRITO -->
+  <div class="px-4 bg-white py-4 shadow-md flex-shrink-0">
+    <div class="flex justify-between">
+      <span class="font-semibold text-lg">Total:</span>
+      <span id="cartTotal" class="font-semibold text-lg">$0.00</span>
+    </div>
+    <button type="button" class="bg-green-500 text-white p-2 rounded w-full mt-4" id="payButton">
+      PAGAR
+    </button>
+  </div>
+  <!-- FIN DEL FOOTER DEL CARRITO -->
+</div>
+
+
+
+    <script type="module" src="/src/main.js"></script>
+    <script type="module" src="/src/js/productsEvents.js"></script>
+    <script type="module" src="/src/js/sidebarShoppingCart.js"></script>
+    <script type="text/javascript" src="/src/js/slider.js"></script>
+  </body>
+</html>

@@ -18,7 +18,7 @@ export const createProductCard = (product) => {
 
   const productImg = document.createElement("img");
   productImg.className = "h-48 object-cover";
-  productImg.src = product.url;
+  productImg.src = product.Url;
 
   const productName = document.createElement("span");
   productName.className = "font-bold mt-2";

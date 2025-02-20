@@ -1,14 +1,8 @@
-import { ShoppingCartService } from './shoppingCartService';
-
 export const createProductCard = (product) => {
   const divProductContainer = document.createElement("div");
   divProductContainer.classList.add("product");
   divProductContainer.className = "flex flex-col shadow-lg rounded-md w-full p-4 hover:shadow-xl";
-  divProductContainer.setAttribute("product-id", product.id);
 
-
-  // creamos instancia de la clase shoppinCartService
-  const shoppinCartService = new ShoppingCartService();
 
   // a cualquir etiqueta html se le puede agregar un atributo personalizado
   // en este caso le agregamos un atributo product-id con el id del producto
@@ -24,7 +18,7 @@ export const createProductCard = (product) => {
 
   const productImg = document.createElement("img");
   productImg.className = "h-48 object-cover";
-  productImg.src = product.url;
+  productImg.src = product.Url;
 
   const productName = document.createElement("span");
   productName.className = "font-bold mt-2";
@@ -34,9 +28,15 @@ export const createProductCard = (product) => {
   productDescription.className = "text-sm text-center";
   productDescription.textContent = product.description;
 
+  // Mostrar la cantidad disponible
+  const productStock = document.createElement("span");
+  productStock.className = "text-sm text-gray-600 mt-1";
+  productStock.textContent = `Disponible: ${product.stock}`;
+
   cardContentMaxGrow.appendChild(productImg);
   cardContentMaxGrow.appendChild(productName);
   cardContentMaxGrow.appendChild(productDescription);
+  cardContentMaxGrow.appendChild(productStock); // <-- Aquí se agrega el stock
 
   // Contenedor para la cantidad con botones de + y -
   const quantityContainer = document.createElement("div");
@@ -71,9 +71,11 @@ export const createProductCard = (product) => {
   });
 
   increaseButton.addEventListener("click", () => {
-    let currentValue = parseInt(quantityValue.textContent);
+  let currentValue = parseInt(quantityValue.textContent);
+  if (currentValue < product.stock) {
     quantityValue.textContent = currentValue + 1;
-  });
+  }
+});
 
   quantityContainer.appendChild(decreaseButton);
   quantityContainer.appendChild(quantityValue);
@@ -91,19 +93,13 @@ export const createProductCard = (product) => {
     <svg xmlns="http://www.w3.org/2000/svg" height="32px" viewBox="0 -960 960 960" width="32px" fill="#fff"><path d="M440-600v-120H320v-80h120v-120h80v120h120v80H520v120h-80ZM280-80q-33 0-56.5-23.5T200-160q0-33 23.5-56.5T280-240q33 0 56.5 23.5T360-160q0 33-23.5 56.5T280-80Zm400 0q-33 0-56.5-23.5T600-160q0-33 23.5-56.5T680-240q33 0 56.5 23.5T760-160q0 33-23.5 56.5T680-80ZM40-800v-80h131l170 360h280l156-280h91L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68.5-39t-1.5-79l54-98-144-304H40Z"/></svg>
   `;
 
-  // Agregamos un evento click al boton de agregar al carrito y llamamos al metodo que hace dicha funcion
-  addProductToShoppingCartButton.addEventListener('click', function() {
-    const cantidad = parseInt(quantityValue.textContent);
-    shoppinCartService.addProduct(product, cantidad);
-  });
-
   productActionsContainer.appendChild(quantityContainer);
   productActionsContainer.appendChild(addProductToShoppingCartButton);
 
   // Precio al final
   const productPrice = document.createElement("span");
   productPrice.className = "font-semibold text-red-700 text-xl text-center mt-2";
-  productPrice.textContent = `$${(product.price).toFixed(2)}`;
+  productPrice.textContent = `$${product.price}`;
 
   divProductContainer.appendChild(cardContentMaxGrow);
   divProductContainer.appendChild(productActionsContainer);
@@ -111,6 +107,8 @@ export const createProductCard = (product) => {
 
   return divProductContainer;
 };
+ 
+
 
 /* la variable quantityValue guarda el valor actual de la cantidad del producto,
  para obtener el valor es con quantityValue.textContent */

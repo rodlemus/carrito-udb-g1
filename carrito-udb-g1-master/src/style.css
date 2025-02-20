@@ -1,0 +1,18 @@
+@import "tailwindcss";
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24
+}
+#payButton {
+  width: 100%;
+  margin-top: 1rem;
+  font-weight: bold;
+}
+
+#cartTotal {
+  font-weight: bold;
+  color: #1a1a1a;
+}

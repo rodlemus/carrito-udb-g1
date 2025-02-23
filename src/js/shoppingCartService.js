@@ -32,6 +32,23 @@ export class ShoppingCartService {
       // obenemos los productos guardados en el localStorage
       // le vamos agregar el producto que se acaba de agregar
       const products = this.getProducts();
+      const alreadyExist = products.some(
+        (item) => item.product.id === product.id
+      );
+
+      if (alreadyExist) {
+        this.checkSameProductInCart(product.id, numberOfProducts, products);
+        Swal.fire({
+          title: "Producto agregado al carrito!",
+          text: `${product.name} se ha añadido a tu carrito.`,
+          icon: "success",
+          confirmButtonText: "¡OK!",
+        }).then(() => {
+          // Aquí puedes actualizar el contador del carrito en el navbar
+          this.updateCartCount();
+        });
+        return;
+      }
 
       const productsUpdated = [...products, productAddedToShoppingCart];
 
@@ -48,7 +65,6 @@ export class ShoppingCartService {
         icon: "success",
         confirmButtonText: "¡OK!",
       }).then(() => {
-        
         // Aquí puedes actualizar el contador del carrito en el navbar
         this.updateCartCount();
       });
@@ -57,25 +73,37 @@ export class ShoppingCartService {
         title: "Error",
         text: "Hubo un error al agregar el producto al carrito. Intentalo nuevamente.",
         icon: "error",
-        confirmButtonText: "Aceptar"
+        confirmButtonText: "Aceptar",
       });
       console.error("Error al agregar el producto al carrito: ", error);
     }
   }
 
+  checkSameProductInCart(productId, numberOfProducts, products) {
+    const product = products.find((item) => item.product.id === productId);
+    product.numberOfProducts += numberOfProducts;
+    localStorage.setItem(this.localStorageKey, JSON.stringify(products));
+  }
+
   updateCartCount() {
     const productsInCart = this.getProducts();
-    const cartCount = productsInCart.reduce((acc, item) => acc + item.numberOfProducts, 0);
+    const cartCount = productsInCart.reduce(
+      (acc, item) => acc + item.numberOfProducts,
+      0
+    );
     const cartButton = document.getElementById("shoppingCartNavBarBtn");
-    const countBadge = cartButton.querySelector('div span');
+    const countBadge = cartButton.querySelector("div span");
 
-    countBadge ? countBadge.textContent = cartCount : console.log("No se encontro el elemento del contador");
+    countBadge
+      ? (countBadge.textContent = cartCount)
+      : console.log("No se encontro el elemento del contador");
     // Aqui actualizamos el numero de productos en el carrito
   }
 
   //leemos los productos del localStorage
   getProducts() {
-    const products = JSON.parse(localStorage.getItem(this.localStorageKey)) || [];
+    const products =
+      JSON.parse(localStorage.getItem(this.localStorageKey)) || [];
     if (products) {
       this.productsState = products;
     }
@@ -85,9 +113,11 @@ export class ShoppingCartService {
   // remover productos del carrito
   removeProduct(productId) {
     console.log("ID del producto a eliminar: ", productId);
-    
+
     const products = this.getProducts();
-    const updatedProducts = products.filter(item => item.product.id !== Number(productId));
+    const updatedProducts = products.filter(
+      (item) => item.product.id !== Number(productId)
+    );
 
     console.log("Productos despues de eliminar: ", updatedProducts);
 

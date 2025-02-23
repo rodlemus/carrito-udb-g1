@@ -75,11 +75,31 @@ export class ShoppingCartService {
 
   //leemos los productos del localStorage
   getProducts() {
-    const products =
-      JSON.parse(localStorage.getItem(this.localStorageKey)) || [];
+    const products = JSON.parse(localStorage.getItem(this.localStorageKey)) || [];
     if (products) {
       this.productsState = products;
     }
     return this.productsState;
+  }
+
+  // remover productos del carrito
+  removeProduct(productId) {
+    console.log("ID del producto a eliminar: ", productId);
+    
+    const products = this.getProducts();
+    const updatedProducts = products.filter(item => item.product.id !== Number(productId));
+
+    console.log("Productos despues de eliminar: ", updatedProducts);
+
+    localStorage.setItem(this.localStorageKey, JSON.stringify(updatedProducts));
+    this.updateCartCount();
+  }
+
+  // metodo para limpiar el carrito
+  clearCart() {
+    localStorage.setItem(this.localStorageKey, JSON.stringify([])); // Establecemos el carrito como un array vacio
+    this.productsState = [];
+    console.log("Carrito vaciado");
+    this.updateCartCount();
   }
 }

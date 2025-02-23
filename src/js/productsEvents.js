@@ -13,13 +13,18 @@ export const loadProducts = () => {
 
     const productElement = createProductCard(product);
 
-    // obtenemos el boton de agregar al carrito
-    const addProductToShoppingCartButton =
-      productElement.getElementsByTagName("button")[0];
+    // Obtenemos el boton Agregar al carrito
+    const addProductToShoppingCartButton = productElement.querySelector("button.bg-green-500");
 
     // y le agregamos un evento de click
     addProductToShoppingCartButton.addEventListener("click", () => {
-      shoppingCartService.addProduct(product, 4);
+      // Obtenemos la cantidad selecciona del producto
+      const quantityValue = productElement.querySelector(".w-8.text-center.font-bold");
+      const numberOfProducts = parseInt(quantityValue.textContent);
+
+      // llama al metodo addProduct con el producto y la cantidad
+      shoppingCartService.addProduct(product, numberOfProducts);
+      console.log("Producto agregado al carrito con exito: ", product);
     });
 
     // agregamos el card al contenedor de productos

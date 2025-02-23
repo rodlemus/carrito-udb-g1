@@ -116,7 +116,7 @@ export class ShoppingCartService {
 
     const products = this.getProducts();
     const updatedProducts = products.filter(
-      (item) => item.product.id !== Number(productId)
+      (item) => item.product.id !== productId
     );
 
     console.log("Productos despues de eliminar: ", updatedProducts);

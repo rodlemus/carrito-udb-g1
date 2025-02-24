@@ -2,9 +2,7 @@ import { ShoppingCartService } from "./shoppingCartService.js";
 
 const shoppingCartNavBarBtn = document.getElementById("shoppingCartNavBarBtn");
 const shoppingCartCloseBtn = document.getElementById("shoppingCartCloseBtn");
-const sidebarShoppingCartContainer = document.getElementById(
-  "sidebarShoppingCart"
-);
+const sidebarShoppingCartContainer = document.getElementById("sidebarShoppingCart");
 
 // Evento para abrir el carrito
 shoppingCartNavBarBtn.addEventListener("click", (e) => {
@@ -36,26 +34,18 @@ const renderCartItems = () => {
     cartItem.innerHTML = `
       <div class="flex justify-between items-center gap-4 p-4 bg-white rounded-lg shadow-md">
         <div class="flex-none">
-          <img src="${item.product.url}" alt="${
-      item.product.name
-    }" class="w-16 h-16 object-cover rounded-md">
+          <img src="${item.product.url}" alt="${item.product.name}" class="w-16 h-16 object-cover rounded-md">
         </div>
         <div class="grow text-center">
           <span class="font-medium">${item.product.name}</span>
         </div>
         <div class="grow text-center">
-          <span class="font-semibold">Cantidad: <span class="text-lg">${
-            item.numberOfProducts
-          }</span></span>
+          <span class="font-semibold">Cantidad: <span class="text-lg">${item.numberOfProducts}</span></span>
         </div>
         <div class="grow text-center">
-          <span class="font-semibold">Precio: <span class="text-lg">$${
-            item.product.price * item.numberOfProducts
-          }</span></span>
+          <span class="font-semibold">Precio: <span class="text-lg">$${item.product.price * item.numberOfProducts}</span></span>
         </div>
-        <button class="text-red-500 hover:text-red-700 transition duration-300 remove-button" data-product-id="${
-          item.product.id
-        }">
+        <button class="text-red-500 hover:text-red-700 transition duration-300 remove-button" data-product-id="${item.product.id}">
           <i class="fas fa-trash text-lg"></i>
         </button>
       </div>
@@ -74,10 +64,7 @@ const renderCartItems = () => {
   });
 
   // Calcula el total del carrito
-  const total = products.reduce(
-    (sum, item) => sum + item.product.price * item.numberOfProducts,
-    0
-  );
+  const total = products.reduce((sum, item) => sum + item.product.price * item.numberOfProducts, 0);
 
   // Actualiza el elemento que muestra el total
   const cartTotalElement = document.getElementById("cartTotal");
@@ -94,6 +81,7 @@ const renderCartItems = () => {
       payButton.style.display = "block"; // Muestra el botón si hay productos
     } else {
       payButton.style.display = "none"; // Oculta el botón si no hay productos
+      payButton.classList.add("cursor-pointer");
     }
   } else {
     console.error("Elemento con ID 'payButton' no encontrado.");
@@ -111,10 +99,9 @@ const removeFromCart = (productId) => {
 shoppingCartNavBarBtn.addEventListener("click", () => {
   renderCartItems();
 });
+
 // Obtén el botón "Borrar todo"
-const clearCartButton = document.querySelector(
-  "#sidebarShoppingCart button.bg-red-600"
-);
+const clearCartButton = document.querySelector("#sidebarShoppingCart button.bg-red-600");
 
 // Agrega un evento al botón "Borrar todo"
 if (clearCartButton) {
@@ -129,6 +116,7 @@ const clearCart = () => {
   shoppingCartService.clearCart(); // Llama a un método en el servicio para limpiar el carrito
   renderCartItems(); // Re-renderiza el carrito para reflejar los cambios
 };
+
 // Evento para el botón de "Pagar"
 const payButton = document.getElementById("payButton");
 if (payButton) {
@@ -137,13 +125,13 @@ if (payButton) {
     const products = shoppingCartService.getProducts();
 
     if (products.length > 0) {
-      alert("Redirigiendo a la página de pago..."); // Puedes cambiar esto por una redirección real
-      // Aquí puedes agregar la lógica para redirigir a una página de pago
+      generateInvoice(products); // Genera y muestra la factura
     } else {
       alert("El carrito está vacío. Agrega productos para continuar.");
     }
   });
 }
+
 // Función para generar y mostrar la factura
 const generateInvoice = (products) => {
   // Cerrar el carrito automáticamente

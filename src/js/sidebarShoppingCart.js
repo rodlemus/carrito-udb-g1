@@ -144,3 +144,90 @@ if (payButton) {
     }
   });
 }
+// Función para generar y mostrar la factura
+const generateInvoice = (products) => {
+  // Cerrar el carrito automáticamente
+  sidebarShoppingCartContainer.classList.add("translate-x-full"); // Oculta el carrito
+  sidebarShoppingCartContainer.classList.remove("translate-x-0"); // Asegura que no esté visible
+
+  // Crear el contenedor de la factura
+  const invoiceContainer = document.createElement("div");
+  invoiceContainer.className = "fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center";
+
+  const invoiceContent = document.createElement("div");
+  invoiceContent.className = "bg-white p-6 rounded-lg w-11/12 max-w-2xl";
+
+  const invoiceTitle = document.createElement("h2");
+  invoiceTitle.className = "text-2xl font-bold mb-4";
+  invoiceTitle.textContent = "Factura de Compra";
+
+  const invoiceList = document.createElement("ul");
+  invoiceList.className = "mb-4";
+
+  let subtotal = 0; // Subtotal sin IVA
+  let ivaRate = 0.13; // Tasa de IVA (13%)
+  let ivaAmount = 0; // Monto del IVA
+  let total = 0; // Total con IVA incluido
+
+  // Generar la lista de productos en la factura
+  products.forEach((item) => {
+    const productUnitPrice = item.product.price; // Precio unitario
+    const productTotal = item.product.price * item.numberOfProducts; // Precio total por producto
+    subtotal += productTotal; // Sumar al subtotal
+
+    const invoiceItem = document.createElement("li");
+    invoiceItem.className = "flex justify-between items-center border-b py-2";
+    invoiceItem.innerHTML = `
+      <div class="flex flex-col">
+        <span class="font-medium">${item.product.name}</span>
+        <span class="text-sm text-gray-600">Cantidad: ${item.numberOfProducts}</span>
+        <span class="text-sm text-gray-600">Precio unitario: $${productUnitPrice.toFixed(2)}</span>
+      </div>
+      <span class="font-semibold">$${productTotal.toFixed(2)}</span>
+    `;
+    invoiceList.appendChild(invoiceItem);
+  });
+
+  // Calcular el IVA y el total
+  ivaAmount = subtotal * ivaRate; // Calcular el monto del IVA
+  total = subtotal + ivaAmount; // Calcular el total con IVA
+
+  // Mostrar el subtotal, IVA y total en la factura
+  const invoiceDetails = document.createElement("div");
+  invoiceDetails.className = "text-right space-y-2";
+
+  const subtotalElement = document.createElement("div");
+  subtotalElement.className = "text-sm text-gray-600";
+  subtotalElement.textContent = `Subtotal: $${subtotal.toFixed(2)}`;
+  invoiceDetails.appendChild(subtotalElement);
+
+  const ivaElement = document.createElement("div");
+  ivaElement.className = "text-sm text-gray-600";
+  ivaElement.textContent = `IVA (13%): $${ivaAmount.toFixed(2)}`;
+  invoiceDetails.appendChild(ivaElement);
+
+  const totalElement = document.createElement("div");
+  totalElement.className = "font-bold text-xl";
+  totalElement.textContent = `Total: $${total.toFixed(2)}`;
+  invoiceDetails.appendChild(totalElement);
+
+  // Botón para cerrar la factura y seguir comprando
+  const closeButton = document.createElement("button");
+  closeButton.className = "mt-4 bg-green-500 text-white px-4 py-2 rounded hover:bg-blue-700 cursor-pointer";
+  closeButton.textContent = "Seguir Comprando";
+  closeButton.addEventListener("click", () => {
+    document.body.removeChild(invoiceContainer); // Cierra el modal de la factura
+  });
+
+  // Agregar elementos al contenido de la factura
+  invoiceContent.appendChild(invoiceTitle);
+  invoiceContent.appendChild(invoiceList);
+  invoiceContent.appendChild(invoiceDetails);
+  invoiceContent.appendChild(closeButton);
+
+  // Agregar el contenido de la factura al contenedor
+  invoiceContainer.appendChild(invoiceContent);
+
+  // Mostrar la factura en el cuerpo del documento
+  document.body.appendChild(invoiceContainer);
+};
